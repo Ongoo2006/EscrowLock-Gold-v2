@@ -1,0 +1,45 @@
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, ScrollView, Alert } from 'react-native';
+
+export default function App() {
+  const [amount, setAmount] = useState('');
+  const [receiver, setReceiver] = useState('');
+  const [status, setStatus] = useState('Ready to lock - PesaGuard Active');
+
+  const handleLock = () => {
+    if(!amount || !receiver) { Alert.alert('Jaza taarifa'); return; }
+    setStatus('Locked TZS ' + amount + ' kwa ' + receiver);
+  };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.logo}>EscrowLock</Text>
+        <Text style={styles.gold}>GOLD v2</Text>
+      </View>
+      <ScrollView style={styles.card}>
+        <Text style={styles.label}>Mpokeaji</Text>
+        <TextInput style={styles.input} placeholder="07xx" value={receiver} onChangeText={setReceiver} />
+        <Text style={styles.label}>Kiasi TZS</Text>
+        <TextInput style={styles.input} placeholder="50000" value={amount} onChangeText={setAmount} />
+        <TouchableOpacity style={styles.btn} onPress={handleLock}>
+          <Text style={styles.btnText}>Lock Pesa</Text>
+        </TouchableOpacity>
+        <View style={styles.statusBox}><Text style={styles.statusText}>{status}</Text></View>
+      </ScrollView>
+    </View>
+  );
+}
+const styles = StyleSheet.create({
+  container: { flex:1, backgroundColor:'#0A0A0A', paddingTop:50 },
+  header: { alignItems:'center', padding:20 },
+  logo: { color:'#fff', fontSize:32, fontWeight:'bold' },
+  gold: { color:'#FFD700', fontSize:20, fontWeight:'bold' },
+  card: { backgroundColor:'#161616', margin:16, borderRadius:16, padding:20 },
+  label: { color:'#FFD700', marginTop:16, marginBottom:6 },
+  input: { backgroundColor:'#222', color:'#fff', padding:14, borderRadius:10 },
+  btn: { backgroundColor:'#FFD700', padding:16, borderRadius:12, marginTop:24, alignItems:'center' },
+  btnText: { color:'#000', fontWeight:'bold' },
+  statusBox: { backgroundColor:'#0f0f0f', padding:14, borderRadius:10, marginTop:20 },
+  statusText: { color:'#FFD700', textAlign:'center' },
+});
