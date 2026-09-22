@@ -1,56 +1,46 @@
 <!DOCTYPE html>
 <html lang="sw"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EscrowLock Gold v2 - Secure</title><script src="https://cdn.tailwindcss.com"></script></head>
+<title>EscrowLock Gold v2 - Auto 5%</title><script src="https://cdn.tailwindcss.com"></script></head>
 <body class="bg-black text-yellow-400 min-h-screen p-3">
 <div class="max-w-4xl mx-auto text-center mt-6">
 <h1 class="text-4xl font-black">🔐 EscrowLock Gold v2</h1>
-<p class="text-yellow-200">PesaGuard Secure | Escrow Agent Verified 🛡️</p>
-
+<p class="text-yellow-200">PesaGuard Secure | Auto 5% Fee</p>
 <div class="bg-zinc-900 border-2 border-yellow-600 rounded-2xl p-6 mt-8">
 <h2 class="text-2xl font-black">💰 Anzisha Escrow Salama</h2>
-<p class="text-white text-sm mt-2">Jaza taarifa, namba ya malipo itajifungua kiotomatiki</p>
 <div class="grid md:grid-cols-2 gap-3 mt-5">
 <input id="mnunuzi" placeholder="Namba yako (Mnunuzi)" class="p-3 rounded-xl bg-black border border-zinc-700 text-white">
 <input id="muuzaji" placeholder="Namba ya Muuzaji" class="p-3 rounded-xl bg-black border border-zinc-700 text-white">
-<input id="kiasi" placeholder="Kiasi (TZS / USD)" class="p-3 rounded-xl bg-black border border-zinc-700 text-white">
+<input id="kiasi" type="number" placeholder="Kiasi (TZS / USD)" class="p-3 rounded-xl bg-black border border-zinc-700 text-white" oninput="hesabu()">
 <input id="bidhaa" placeholder="Unanunua nini?" class="p-3 rounded-xl bg-black border border-zinc-700 text-white">
 </div>
+<div id="calcBox" class="hidden bg-black border border-yellow-600 rounded-xl p-4 mt-4 text-left">
+<p class="text-white text-sm">Kiasi: <b id="kiasiShow">0</b></p>
+<p class="text-yellow-400 text-sm">Ada yako (5%): <b id="feeShow">0</b></p>
+<p class="text-green-400 text-sm">Muuzaji atapata: <b id="netShow">0</b></p>
+</div>
 <button onclick="funguaMalipo()" class="w-full bg-yellow-500 text-black font-black py-4 rounded-xl mt-5 text-xl">🔒 ONYESHA NAMBA YA MALIPO</button>
-
-<!-- HAPA NDIPO NAMBA ZINAPOFICHWA -->
 <div id="malipoBox" class="hidden mt-6 grid md:grid-cols-2 gap-4">
-  <div class="bg-black border border-red-600 rounded-xl p-4">
-    <p class="text-xs text-zinc-400">M-Pesa Vodacom</p>
-    <p class="text-xl font-black text-white" id="mpesaNum">0723245319</p>
-    <p class="text-sm text-white">Emmanuel Kija Amos</p>
-    <button onclick="copyText('0723245319')" class="w-full bg-red-600 py-2 rounded mt-2 font-bold text-white">Copy</button>
-  </div>
-  <div class="bg-black border border-green-600 rounded-xl p-4">
-    <p class="text-xs text-zinc-400">CRDB Bank</p>
-    <p class="text-xl font-black text-white">10470467277</p>
-    <p class="text-sm text-white">Emmanuel Kija Amos</p>
-    <button onclick="copyText('10470467277')" class="w-full bg-green-600 py-2 rounded mt-2 font-bold text-white">Copy</button>
-  </div>
-  <div class="col-span-2 bg-yellow-900/30 border border-yellow-600 rounded-xl p-3">
-    <p class="text-white text-sm">✅ Ada ya Agent: <b class="text-yellow-400">5%</b> | Baada ya kulipa, bonyeza kitufe cha WhatsApp hapa chini kutuma uthibitisho</p>
-    <a id="waLink" href="#" target="_blank" class="block w-full bg-green-600 text-white py-3 rounded-xl mt-3 font-black">📱 Tuma Uthibitisho WhatsApp</a>
-  </div>
-</div>
-
-</div>
-<p class="text-zinc-600 text-xs mt-8 text-center">© Secure Escrow | PesaGuard inashikilia pesa hadi pande zote ziridhike.</p>
-</div>
+<div class="bg-black border border-red-600 rounded-xl p-4"><p class="text-xs text-zinc-400">M-Pesa Vodacom</p><p class="text-xl font-black text-white">0723245319</p><p class="text-sm text-white">Emmanuel Kija Amos</p><button onclick="copyText('0723245319')" class="w-full bg-red-600 py-2 rounded mt-2 font-bold text-white">Copy</button></div>
+<div class="bg-black border border-green-600 rounded-xl p-4"><p class="text-xs text-zinc-400">CRDB Bank</p><p class="text-xl font-black text-white">10470467277</p><p class="text-sm text-white">Emmanuel Kija Amos</p><button onclick="copyText('10470467277')" class="w-full bg-green-600 py-2 rounded mt-2 font-bold text-white">Copy</button></div>
+<div class="col-span-2 bg-yellow-900/30 border border-yellow-600 rounded-xl p-3"><p class="text-white text-xs">System itakata 5% automatic. Wewe utatuma kwa muuzaji kiasi cha <b id="netShow2" class="text-green-400">0</b> tu!</p><a id="waLink" href="#" target="_blank" class="block w-full bg-green-600 text-white py-3 rounded-xl mt-3 font-black">📱 Tuma Uthibitisho WhatsApp</a></div>
+</div></div></div>
 <script>
+function hesabu(){
+ let k=parseFloat(document.getElementById('kiasi').value)||0;
+ let fee=k*0.05; let net=k-fee;
+ document.getElementById('calcBox').classList.remove('hidden');
+ document.getElementById('kiasiShow').innerText=k.toLocaleString();
+ document.getElementById('feeShow').innerText=fee.toLocaleString();
+ document.getElementById('netShow').innerText=net.toLocaleString();
+ document.getElementById('netShow2').innerText=net.toLocaleString();
+}
 function funguaMalipo(){
- let m=document.getElementById('mnunuzi').value;
- let k=document.getElementById('kiasi').value;
- let b=document.getElementById('bidhaa').value;
- if(!m||!k){alert('Jaza namba yako na kiasi kwanza kaka!');return}
+ let m=document.getElementById('mnunuzi').value; let k=document.getElementById('kiasi').value; let b=document.getElementById('bidhaa').value;
+ if(!m||!k){alert('Jaza namba na kiasi!');return}
  document.getElementById('malipoBox').classList.remove('hidden');
- let msg=`HABARI EscrowLock, Nimeanzisha Escrow ya ${k} kwa ${b}. Namba yangu ${m}. Nimeshalipa.`;
+ let msg=`Escrow: ${k} kwa ${b}. Mnunuzi ${m}. Fee 5% auto.`;
  document.getElementById('waLink').href=`https://wa.me/255723245319?text=${encodeURIComponent(msg)}`;
  window.scrollTo(0,document.body.scrollHeight);
 }
 function copyText(t){navigator.clipboard.writeText(t);alert('Imecopiwa: '+t)}
-</script>
-</body></html>
+</script></body></html>
