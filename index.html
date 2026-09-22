@@ -1,25 +1,22 @@
-<!DOCTYPE html><html lang="sw"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EscrowLock Gold v2</title><script src="https://cdn.tailwindcss.com"></script></head>
-<body class="bg-black text-yellow-400 min-h-screen p-3">
-<div class="max-w-4xl mx-auto text-center mt-4">
-<img src="IMG-20260922-WA4657.jpg" class="w-32 h-32 mx-auto rounded-full border-4 border-yellow-500 object-cover">
-<h1 class="text-4xl font-black mt-3">EscrowLock Gold v2</h1><p class="text-yellow-200 text-sm">PesaGuard Secure | Auto 5% | Certified Agent Mwanza</p>
-<div class="bg-zinc-900 border-2 border-yellow-600 rounded-2xl p-6 mt-6">
-<h2 class="text-2xl font-black">💰 Anzisha Escrow Salama</h2>
-<div class="grid md:grid-cols-2 gap-3 mt-4">
-<input id="mnunuzi" placeholder="Namba yako (Mnunuzi)" class="p-3 rounded-xl bg-black border border-zinc-700 text-white">
-<input id="muuzaji" placeholder="Namba ya Muuzaji" class="p-3 rounded-xl bg-black border border-zinc-700 text-white">
-<input id="kiasi" type="number" placeholder="Kiasi TZS" class="p-3 rounded-xl bg-black border border-zinc-700 text-white" oninput="hesabu()">
-<input id="bidhaa" placeholder="Unanunua nini?" class="p-3 rounded-xl bg-black border border-zinc-700 text-white">
-</div>
-<div id="calcBox" class="hidden bg-black border border-yellow-600 rounded-xl p-4 mt-4 text-left">
-<p class="text-white text-sm">Kiasi: <b id="kiasiShow">0</b></p>
-<p class="text-yellow-400 text-sm">Ada yako (5%): <b id="feeShow">0</b></p>
-<p class="text-green-400 font-bold">Muuzaji atapata: <b id="netShow">0</b></p>
-</div>
-<button onclick="funguaMalipo()" class="w-full bg-yellow-500 text-black font-black py-4 rounded-xl mt-5">🔒 ONYESHA NAMBA YA MALIPO</button>
-<div id="malipoBox" class="hidden mt-6 grid md:grid-cols-2 gap-4">
-<div class="bg-black border border-red-600 rounded-xl p-4"><p class="text-xs">M-Pesa</p><p class="text-xl font-black text-white">0723245319</p><p class="text-sm">Emmanuel Kija Amos</p></div>
-<div class="bg-black border border-green-600 rounded-xl p-4"><p class="text-xs">CRDB</p><p class="text-xl font-black text-white">10470467277</p><p class="text-sm">Emmanuel Kija Amos</p></div>
-<div class="col-span-2"><a id="waLink" href="#" target="_blank" class="block w-full bg-green-600 text-white py-3 rounded-xl font-black text-center">📱 Tuma WhatsApp Kwa Agent</a></div>
-</div></div>
-<div class="mt-8 bg-zinc-900 border border-yellow-700
+<!DOCTYPE html><html lang="sw"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EscrowLock Gold v2 - White Hacker Edition</title><script src="https://cdn.tailwindcss.com"></script></head>
+<body class="bg-black text-yellow-400 min-h-screen p-3 flex items-center justify-center">
+<!-- LOGIN SCREEN - WHITE HACKER SECURITY -->
+<div id="login" class="max-w-sm w-full bg-zinc-900 border-2 border-yellow-500 rounded-2xl p-6 text-center">
+<h1 class="text-2xl font-black">🔐 White Hacker Lock</h1><p class="text-xs text-white mt-1">EscrowLock Gold v2 | Secure Access</p>
+<input id="pass" type="password" placeholder="Password: Escrow2026" class="w-full mt-4 p-3 rounded bg-black border border-zinc-700 text-white text-center">
+<button onclick="login()" class="w-full bg-yellow-500 text-black font-black py-3 rounded mt-3">🔓 INGIA</button>
+<div id="otpBox" class="hidden mt-4 bg-black border border-green-500 rounded p-3">
+<p class="text-xs">OTP Yako:</p><p id="otpCode" class="text-2xl font-black text-green-400">---</p>
+<input id="otpInput" placeholder="Andika OTP hapo juu" class="w-full mt-2 p-2 rounded bg-zinc-900 border border-zinc-700 text-white text-center">
+<button onclick="verify()" class="w-full bg-green-600 text-white font-black py-2 rounded mt-2">✅ THIBITISHA OTP</button>
+</div><p id="err" class="text-red-500 text-xs mt-2 hidden"></p></div>
+
+<!-- MAIN ESCROW - ITAONEKANA BAADA YA LOGIN -->
+<div id="main" class="hidden max-w-4xl mx-auto w-full text-center">
+<h1 class="text-3xl font-black">🔒 EscrowLock Gold v2</h1><p class="text-xs">PesaGuard Secure | Auto 5% | White Hacker Verified</p>
+<div class="bg-zinc-900 border border-yellow-600 rounded-2xl p-5 mt-5 text-left">
+<h2 class="font-black text-center">💰 Anzisha Muamala Salama</h2>
+<input id="mn" placeholder="Namba yako (Mnunuzi)" class="w-full mt-3 p-3 rounded bg-black border border-zinc-700 text-white">
+<input id="mu" placeholder="Namba ya Muuzaji" class="w-full mt-2 p-3 rounded bg-black border border-zinc-700 text-white">
+<input id="ki" type="number" placeholder="Kiasi (TZS/USD)" oninput="hesabu()" class="w-full mt-2 p-3 rounded bg-black border border-zinc-700 text-white">
+<input id="bi" placeholder="Unanun
